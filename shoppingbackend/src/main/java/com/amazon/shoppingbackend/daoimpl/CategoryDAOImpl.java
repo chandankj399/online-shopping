@@ -3,9 +3,12 @@ package com.amazon.shoppingbackend.daoimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.amazon.shoppingbackend.dao.CategoryDAO;
 import com.amazon.shoppingbackend.dto.Category;
 
+@Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO {
 
 	
