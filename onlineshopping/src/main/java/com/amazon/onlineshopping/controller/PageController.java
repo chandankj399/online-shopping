@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazon.shoppingbackend.dao.CategoryDAO;
+import com.amazon.shoppingbackend.dto.Category;
 
 @Controller
 public class PageController {
@@ -57,6 +58,41 @@ public class PageController {
 		return mv;
 	}
 	
+	
+	
+	/*
+	 * Methods to load all products
+	 */
+	
+	@RequestMapping(value="/show/all/products")
+	public ModelAndView showAllProducts() {
+		ModelAndView mv = new ModelAndView("listProducts");
+		mv.addObject("title", "All Producs");
+		mv.addObject("categories",categoryDAO.list());
+		mv.addObject("userClickAllProducts",true);
+		
+		Category category = null;
+		category = categoryDAO.get(1);
+		mv.addObject("category", category);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/show/category/{id}/products")
+	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("home");
+		
+		// categoryDAO to fetch a single category
+		
+		Category category = null;
+		category = categoryDAO.get(id);
+		
+		mv.addObject("title", category.getName());
+		mv.addObject("categories",categoryDAO.list());
+		mv.addObject("userClickCategoryProducts",true);
+		mv.addObject("category", category);
+		return mv;
+	}
 	
 	
 }

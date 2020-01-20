@@ -41,7 +41,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		category = new Category();
 		
 		// adding third category
-		category.setId(1);
+		category.setId(3);
 		category.setName("Laptop");
 		category.setDescription("This is a desc for Laptops");
 		category.setImageURL("CAT_2.png");
@@ -54,6 +54,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<Category> list() {
 		// TODO Auto-generated method stub
 		return categories;
+	}
+
+
+	@Override
+	public Category get(int id) {
+
+		for(Category category: categories) {
+			if (category.getId() == id) return category;
+		}
+		return null;
 	}
 
 }
